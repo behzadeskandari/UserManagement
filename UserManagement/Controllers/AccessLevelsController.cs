@@ -5,7 +5,7 @@ using UserManagement.Repositories.Interfaces;
 
 namespace UserManagement.Controllers
 {
-    [Authorize(Roles = "1")]
+    [Authorize(Roles = "Admin")]
     [ApiController]
     [Route("api/[controller]")]
     public class AccessLevelsController : ControllerBase

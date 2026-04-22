@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using UserManagement.Data;
+using UserManagement.Helpers;
 using UserManagement.Repositories;
 using UserManagement.Repositories.Interfaces;
 using UserManagement.Services;
@@ -50,7 +51,7 @@ builder.Services.AddScoped<DbConnectionFactory>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAccessLevelRepository, AccessLevelRepository>();
 builder.Services.AddScoped<AuthService>();
-
+builder.Services.AddScoped<JwtHelper>();
 // JWT
 var jwtKey = builder.Configuration["Jwt:Key"];
 builder.Services.AddAuthentication(options =>

@@ -33,8 +33,8 @@ namespace UserManagement.Services
 
             if (!PasswordHelper.Verify(password, user.PasswordHash))
                 return null;
-
-            return JwtHelper.Generate(user, _config["Jwt:Key"]);
+            var record = new JwtHelper(_config).Generate(user);
+            return record;
         }
 
 
