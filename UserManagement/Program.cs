@@ -2,6 +2,10 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using UserManagement.Data;
+using UserManagement.Repositories;
+using UserManagement.Repositories.Interfaces;
+using UserManagement.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,10 +17,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-//builder.Services.AddScoped<DbConnectionFactory>();
-//builder.Services.AddScoped<IUserRepository, UserRepository>();
-//builder.Services.AddScoped<IAccessLevelRepository, AccessLevelRepository>();
-//builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<DbConnectionFactory>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAccessLevelRepository, AccessLevelRepository>();
+builder.Services.AddScoped<AuthService>();
 
 // JWT
 var jwtKey = builder.Configuration["Jwt:Key"];
