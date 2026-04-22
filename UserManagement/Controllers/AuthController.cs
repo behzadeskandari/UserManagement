@@ -24,5 +24,17 @@ namespace UserManagement.Controllers
 
             return Ok(new { token });
         }
+
+
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(LoginRequest request)
+        {
+            var user = await _auth.Register(request.Username, request.Password);
+
+            if (user == null) return Unauthorized();
+
+            return Ok(new { user });
+        }
     }
 }

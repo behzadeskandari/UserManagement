@@ -11,9 +11,10 @@ namespace UserManagement.Repositories
         public async Task<IEnumerable<AccessLevel>> GetAllAsync()
         {
             using var conn = db.CreateConnection();
-            return await conn.QueryAsync<AccessLevel>(
+            var t = await conn.QueryAsync<AccessLevel>(
                 "sp_AccessLevels_GetAll",
                 commandType: CommandType.StoredProcedure);
+            return t;
         }
 
         public async Task<AccessLevel?> GetByIdAsync(int id)
