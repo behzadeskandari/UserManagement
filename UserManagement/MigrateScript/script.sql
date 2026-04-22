@@ -82,3 +82,30 @@ INSERT INTO AccessLevels (Name, Description) VALUES
 INSERT INTO Users (FullName, Username, Email, PasswordHash, AccessLevelId)
 VALUES ('Admin User','admin','admin@test.com',
 '$2a$11$w7Q8Z8dQe8fQyXW8X7rGSeXQ6zX3zYk5zZk5j5Zk5Zk5Zk5Zk5Zk5',1);
+
+
+
+
+CREATE PROCEDURE sp_AccessLevels_GetAll AS
+BEGIN
+    SELECT * FROM AccessLevels;
+END;
+GO
+
+CREATE PROCEDURE sp_AccessLevels_GetById @Id INT AS
+BEGIN
+    SELECT * FROM AccessLevels WHERE Id = @Id;
+END;
+GO
+
+CREATE PROCEDURE sp_AccessLevels_Create @Name NVARCHAR(50), @Description NVARCHAR(200) AS
+BEGIN
+    INSERT INTO AccessLevels (Name, Description) VALUES (@Name, @Description);
+END;
+GO
+
+CREATE PROCEDURE sp_AccessLevels_Update @Id INT, @Name NVARCHAR(50), @Description NVARCHAR(200) AS
+BEGIN
+    UPDATE AccessLevels SET Name = @Name, Description = @Description WHERE Id = @Id;
+END;
+GO
